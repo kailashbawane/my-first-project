@@ -2,22 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Bawane Family Tree</title>
+<title>Interactive Family Tree</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #eef2f3, #dfe9f3);
-  text-align: center;
   margin: 0;
+  overflow: hidden;
+  background: #eef2f3;
 }
 
 h1 {
-  margin: 20px;
-  color: #2c3e50;
+  text-align: center;
+  margin: 10px;
+  font-size: 20px;
 }
 
-/* Tree Layout */
+/* Container for zoom */
+#tree-container {
+  width: 100vw;
+  height: 90vh;
+  overflow: hidden;
+  cursor: grab;
+}
+
+/* Tree */
+.tree {
+  display: inline-block;
+  padding: 40px;
+}
+
+/* Structure */
 .tree ul {
   padding-top: 20px;
   position: relative;
@@ -31,7 +48,7 @@ h1 {
   display: inline-block;
 }
 
-/* Connector lines */
+/* Lines */
 .tree li::before, .tree li::after {
   content: '';
   position: absolute;
@@ -41,18 +58,10 @@ h1 {
   height: 20px;
 }
 
-.tree li::before {
-  right: 50%;
-}
-
+.tree li::before { right: 50%; }
 .tree li::after {
   left: 50%;
   border-left: 2px solid #bbb;
-}
-
-.tree li:only-child::before,
-.tree li:only-child::after {
-  display: none;
 }
 
 .tree ul ul::before {
@@ -64,56 +73,61 @@ h1 {
   height: 20px;
 }
 
-/* Member Card */
+/* Card */
 .member {
   display: inline-block;
-  background: #ffffff;
-  padding: 8px;
-  border-radius: 10px;
-  width: 130px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  background: white;
+  padding: 6px;
+  border-radius: 8px;
+  width: 110px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
   margin: 4px;
-  transition: 0.2s;
 }
 
-.member:hover {
-  transform: translateY(-4px);
-}
-
-/* Small Image */
 .member img {
   width: 100%;
-  height: 90px;
-  border-radius: 8px;
+  height: 70px;
+  border-radius: 6px;
   object-fit: cover;
 }
 
-/* Text */
 .name {
-  font-size: 13px;
-  font-weight: 600;
-  margin-top: 4px;
+  font-size: 11px;
+  font-weight: bold;
 }
 
 .role {
-  font-size: 11px;
-  margin-top: 2px;
+  font-size: 10px;
 }
 
-/* Gender Colors */
 .male { color: #3498db; }
 .female { color: #e84393; }
 
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  .member {
+    width: 90px;
+  }
+
+  .member img {
+    height: 60px;
+  }
+
+  .name {
+    font-size: 10px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<h1>🌳 Bawane Family Tree</h1>
+<h1>🌳 Bawane Family Tree (Zoom & Pan Enabled)</h1>
 
-<div class="tree">
+<div id="tree-container">
+  <div class="tree" id="tree">
+
 <ul>
-
 <li>
 
   <!-- Parents -->
@@ -131,7 +145,7 @@ h1 {
 
   <ul>
 
-    <!-- Kailash Family -->
+    <!-- Kailash -->
     <li>
       <div class="member">
         <img src="images/Kailash.jpg">
@@ -150,21 +164,18 @@ h1 {
           <div class="member">
             <img src="images/Anvi.jpg">
             <div class="name">Anvi</div>
-            <div class="role female">Daughter</div>
           </div>
         </li>
-
         <li>
           <div class="member">
             <img src="images/Gargi.jpg">
             <div class="name">Gargi</div>
-            <div class="role female">Daughter</div>
           </div>
         </li>
       </ul>
     </li>
 
-    <!-- Pratibha Family -->
+    <!-- Pratibha -->
     <li>
       <div class="member">
         <img src="images/Pratibha.jpg">
@@ -183,21 +194,18 @@ h1 {
           <div class="member">
             <img src="images/Urja.jpg">
             <div class="name">Urja</div>
-            <div class="role female">Daughter</div>
           </div>
         </li>
-
         <li>
           <div class="member">
             <img src="images/Shourya.jpg">
             <div class="name">Shourya</div>
-            <div class="role male">Son</div>
           </div>
         </li>
       </ul>
     </li>
 
-    <!-- Nitin Family -->
+    <!-- Nitin -->
     <li>
       <div class="member">
         <img src="images/Nitin.jpg">
@@ -216,17 +224,33 @@ h1 {
           <div class="member">
             <img src="images/Parth.jpg">
             <div class="name">Parth</div>
-            <div class="role male">Son</div>
           </div>
         </li>
       </ul>
     </li>
 
   </ul>
-</li>
 
+</li>
 </ul>
+
+  </div>
 </div>
+
+<!-- Panzoom Library -->
+<script src="https://unpkg.com/@panzoom/panzoom/dist/panzoom.min.js"></script>
+
+<script>
+const elem = document.getElementById('tree');
+const panzoom = Panzoom(elem, {
+  maxScale: 2,
+  minScale: 0.5,
+  contain: 'outside'
+});
+
+document.getElementById('tree-container')
+  .addEventListener('wheel', panzoom.zoomWithWheel);
+</script>
 
 </body>
 </html>
