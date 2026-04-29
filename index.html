@@ -2,43 +2,52 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Interactive Family Tree</title>
+<title>Bawane Family Tree</title>
 
 <style>
 body {
-  font-family: Arial;
-  background: linear-gradient(to right, #a8edea, #fed6e3);
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #eef2f3, #dfe9f3);
   text-align: center;
+  margin: 0;
 }
 
-/* Tree structure */
+h1 {
+  margin: 20px;
+  color: #2c3e50;
+}
+
+/* Tree Layout */
 .tree ul {
   padding-top: 20px;
   position: relative;
 }
 
 .tree li {
-  list-style-type: none;
+  list-style: none;
   text-align: center;
   position: relative;
-  padding: 20px 10px 0 10px;
+  padding: 20px 5px 0 5px;
+  display: inline-block;
 }
 
-/* Connectors */
+/* Connector lines */
 .tree li::before, .tree li::after {
   content: '';
   position: absolute;
   top: 0;
-  right: 50%;
-  border-top: 2px solid #555;
+  border-top: 2px solid #bbb;
   width: 50%;
   height: 20px;
 }
 
+.tree li::before {
+  right: 50%;
+}
+
 .tree li::after {
-  right: auto;
   left: 50%;
-  border-left: 2px solid #555;
+  border-left: 2px solid #bbb;
 }
 
 .tree li:only-child::before,
@@ -51,53 +60,56 @@ body {
   position: absolute;
   top: 0;
   left: 50%;
-  border-left: 2px solid #555;
+  border-left: 2px solid #bbb;
   height: 20px;
 }
 
-/* Member card */
+/* Member Card */
 .member {
   display: inline-block;
-  background: white;
-  padding: 12px;
-  border-radius: 12px;
-  width: 180px;
-  box-shadow: 0 5px 12px rgba(0,0,0,0.2);
-  margin: 5px;
-  cursor: pointer;
-  transition: 0.3s;
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 10px;
+  width: 130px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  margin: 4px;
+  transition: 0.2s;
 }
 
 .member:hover {
-  background: #f1f1f1;
+  transform: translateY(-4px);
 }
 
+/* Small Image */
 .member img {
   width: 100%;
-  height: 150px;
-  border-radius: 10px;
+  height: 90px;
+  border-radius: 8px;
   object-fit: cover;
 }
 
+/* Text */
 .name {
-  font-weight: bold;
-  margin-top: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
 }
 
-.male { color: blue; }
-.female { color: deeppink; }
-
-/* Hidden children */
-.hidden {
-  display: none;
+.role {
+  font-size: 11px;
+  margin-top: 2px;
 }
+
+/* Gender Colors */
+.male { color: #3498db; }
+.female { color: #e84393; }
 
 </style>
 </head>
 
 <body>
 
-<h1>🌳 Interactive Bawane Family Tree</h1>
+<h1>🌳 Bawane Family Tree</h1>
 
 <div class="tree">
 <ul>
@@ -105,40 +117,40 @@ body {
 <li>
 
   <!-- Parents -->
-  <div class="member" onclick="toggle(this)">
+  <div class="member">
     <img src="images/Father.jpg">
-    <div class="name">Rajendra Bawane</div>
-    <div class="male">Father (Click)</div>
+    <div class="name">Rajendra</div>
+    <div class="role male">Father</div>
   </div>
 
   <div class="member">
     <img src="images/Mother.jpg">
-    <div class="name">Dwarka Bawane</div>
-    <div class="female">Mother</div>
+    <div class="name">Dwarka</div>
+    <div class="role female">Mother</div>
   </div>
 
-  <ul class="hidden">
+  <ul>
 
     <!-- Kailash Family -->
     <li>
-      <div class="member" onclick="toggle(this)">
+      <div class="member">
         <img src="images/Kailash.jpg">
         <div class="name">Kailash</div>
-        <div class="male">Click to expand</div>
+        <div class="role male">Son</div>
       </div>
 
       <div class="member">
         <img src="images/Sumati.jpg">
         <div class="name">Sumati</div>
-        <div class="female">Wife</div>
+        <div class="role female">Wife</div>
       </div>
 
-      <ul class="hidden">
+      <ul>
         <li>
           <div class="member">
             <img src="images/Anvi.jpg">
             <div class="name">Anvi</div>
-            <div class="female">Daughter</div>
+            <div class="role female">Daughter</div>
           </div>
         </li>
 
@@ -146,7 +158,7 @@ body {
           <div class="member">
             <img src="images/Gargi.jpg">
             <div class="name">Gargi</div>
-            <div class="female">Daughter</div>
+            <div class="role female">Daughter</div>
           </div>
         </li>
       </ul>
@@ -154,24 +166,24 @@ body {
 
     <!-- Pratibha Family -->
     <li>
-      <div class="member" onclick="toggle(this)">
+      <div class="member">
         <img src="images/Pratibha.jpg">
         <div class="name">Pratibha</div>
-        <div class="female">Click to expand</div>
+        <div class="role female">Daughter</div>
       </div>
 
       <div class="member">
         <img src="images/Manojrao.jpg">
         <div class="name">Manojrao</div>
-        <div class="male">Husband</div>
+        <div class="role male">Husband</div>
       </div>
 
-      <ul class="hidden">
+      <ul>
         <li>
           <div class="member">
             <img src="images/Urja.jpg">
             <div class="name">Urja</div>
-            <div class="female">Daughter</div>
+            <div class="role female">Daughter</div>
           </div>
         </li>
 
@@ -179,7 +191,7 @@ body {
           <div class="member">
             <img src="images/Shourya.jpg">
             <div class="name">Shourya</div>
-            <div class="male">Son</div>
+            <div class="role male">Son</div>
           </div>
         </li>
       </ul>
@@ -187,44 +199,34 @@ body {
 
     <!-- Nitin Family -->
     <li>
-      <div class="member" onclick="toggle(this)">
+      <div class="member">
         <img src="images/Nitin.jpg">
         <div class="name">Nitin</div>
-        <div class="male">Click to expand</div>
+        <div class="role male">Son</div>
       </div>
 
       <div class="member">
         <img src="images/Vaishali.jpg">
         <div class="name">Vaishali</div>
-        <div class="female">Wife</div>
+        <div class="role female">Wife</div>
       </div>
 
-      <ul class="hidden">
+      <ul>
         <li>
           <div class="member">
             <img src="images/Parth.jpg">
             <div class="name">Parth</div>
-            <div class="male">Son</div>
+            <div class="role male">Son</div>
           </div>
         </li>
       </ul>
     </li>
 
   </ul>
-
 </li>
 
 </ul>
 </div>
-
-<script>
-function toggle(element) {
-  let next = element.parentElement.querySelector("ul");
-  if (next) {
-    next.classList.toggle("hidden");
-  }
-}
-</script>
 
 </body>
 </html>
