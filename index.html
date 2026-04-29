@@ -1,9 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My First Project</title>
+  <meta charset="UTF-8">
+  <title>My Family Tree</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #a8edea, #fed6e3);
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    .tree {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .generation {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .member {
+      background: white;
+      border-radius: 15px;
+      padding: 15px;
+      width: 180px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .member:hover {
+      transform: scale(1.05);
+    }
+
+    .member img {
+      width: 100%;
+      height: 180px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .details {
+      font-size: 14px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    /* Connector lines */
+    .line {
+      width: 2px;
+      height: 40px;
+      background: #333;
+      margin: auto;
+    }
+
+  </style>
 </head>
 <body>
-  <h1>Hello, Anvi and Gargi and Sumati Kailash Bawane!</h1>
+
+  <h1>🌳 My Family Tree</h1>
+
+  <div class="tree">
+
+    <!-- Parents -->
+    <div class="generation">
+      <div class="member">
+        <img src="images/Father.jpg" alt="Father">
+        <div class="name">Father</div>
+        <div class="details">Gender: Male</div>
+        <div class="details">Relationship: Father</div>
+      </div>
+
+      <div class="member">
+        <img src="images/Mother.jpg" alt="Mother">
+        <div class="name">Mother</div>
+        <div class="details">Gender: Female</div>
+        <div class="details">Relationship: Mother</div>
+      </div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="line"></div>
+
+    <!-- Children -->
+    <div class="generation">
+      <div class="member">
+        <img src="images/Kailash.jpg" alt="ElderSon">
+        <div class="name">Kailash Bawane</div>
+        <div class="details">Gender: Male</div>
+        <div class="details">Relationship: ElderSon</div>
+      </div>
+
+      <div class="member">
+        <img src="images/Pratibha.jpg" alt="Sister">
+        <div class="name">Pratibha</div>
+        <div class="details">Gender: Female</div>
+        <div class="details">Relationship: Sister</div>
+      </div>
+
+      <div class="member">
+        <img src="images/Nitin.jpg" alt="YoungerSon">
+        <div class="name">Nitin</div>
+        <div class="details">Gender: Male</div>
+        <div class="details">Relationship: YoungerSon</div>
+      </div>
+    </div>
+
+  </div>
+
 </body>
 </html>
