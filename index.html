@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Bawane Family Tree</title>
+<title>Interactive Family Tree</title>
 
 <style>
 body {
@@ -11,11 +11,10 @@ body {
   text-align: center;
 }
 
-/* Tree */
+/* Tree structure */
 .tree ul {
   padding-top: 20px;
   position: relative;
-  display: inline-block;
 }
 
 .tree li {
@@ -23,7 +22,6 @@ body {
   text-align: center;
   position: relative;
   padding: 20px 10px 0 10px;
-  display: inline-block;
 }
 
 /* Connectors */
@@ -48,15 +46,6 @@ body {
   display: none;
 }
 
-.tree li:first-child::before,
-.tree li:last-child::after {
-  border: none;
-}
-
-.tree li:last-child::before {
-  border-right: 2px solid #555;
-}
-
 .tree ul ul::before {
   content: '';
   position: absolute;
@@ -75,6 +64,12 @@ body {
   width: 180px;
   box-shadow: 0 5px 12px rgba(0,0,0,0.2);
   margin: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.member:hover {
+  background: #f1f1f1;
 }
 
 .member img {
@@ -92,39 +87,44 @@ body {
 .male { color: blue; }
 .female { color: deeppink; }
 
+/* Hidden children */
+.hidden {
+  display: none;
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>🌳 Bawane Family Tree</h1>
+<h1>🌳 Interactive Bawane Family Tree</h1>
 
 <div class="tree">
 <ul>
 
-<!-- Parents -->
 <li>
 
-  <div class="member">
+  <!-- Parents -->
+  <div class="member" onclick="toggle(this)">
     <img src="images/Father.jpg">
-    <div class="name">Shree Rajendra Bawane</div>
-    <div class="male">Father</div>
+    <div class="name">Rajendra Bawane</div>
+    <div class="male">Father (Click)</div>
   </div>
 
   <div class="member">
     <img src="images/Mother.jpg">
-    <div class="name">Smt Dwarka Bawane</div>
+    <div class="name">Dwarka Bawane</div>
     <div class="female">Mother</div>
   </div>
 
-  <ul>
+  <ul class="hidden">
 
     <!-- Kailash Family -->
     <li>
-      <div class="member">
+      <div class="member" onclick="toggle(this)">
         <img src="images/Kailash.jpg">
         <div class="name">Kailash</div>
-        <div class="male">Son</div>
+        <div class="male">Click to expand</div>
       </div>
 
       <div class="member">
@@ -133,7 +133,7 @@ body {
         <div class="female">Wife</div>
       </div>
 
-      <ul>
+      <ul class="hidden">
         <li>
           <div class="member">
             <img src="images/Anvi.jpg">
@@ -154,19 +154,19 @@ body {
 
     <!-- Pratibha Family -->
     <li>
-      <div class="member">
+      <div class="member" onclick="toggle(this)">
         <img src="images/Pratibha.jpg">
         <div class="name">Pratibha</div>
-        <div class="female">Daughter</div>
+        <div class="female">Click to expand</div>
       </div>
 
       <div class="member">
         <img src="images/Manojrao.jpg">
-        <div class="name">Manojrao Daspute</div>
-        <div class="male">Son-in-law</div>
+        <div class="name">Manojrao</div>
+        <div class="male">Husband</div>
       </div>
 
-      <ul>
+      <ul class="hidden">
         <li>
           <div class="member">
             <img src="images/Urja.jpg">
@@ -187,10 +187,10 @@ body {
 
     <!-- Nitin Family -->
     <li>
-      <div class="member">
+      <div class="member" onclick="toggle(this)">
         <img src="images/Nitin.jpg">
         <div class="name">Nitin</div>
-        <div class="male">Son</div>
+        <div class="male">Click to expand</div>
       </div>
 
       <div class="member">
@@ -199,7 +199,7 @@ body {
         <div class="female">Wife</div>
       </div>
 
-      <ul>
+      <ul class="hidden">
         <li>
           <div class="member">
             <img src="images/Parth.jpg">
@@ -211,10 +211,20 @@ body {
     </li>
 
   </ul>
+
 </li>
 
 </ul>
 </div>
+
+<script>
+function toggle(element) {
+  let next = element.parentElement.querySelector("ul");
+  if (next) {
+    next.classList.toggle("hidden");
+  }
+}
+</script>
 
 </body>
 </html>
